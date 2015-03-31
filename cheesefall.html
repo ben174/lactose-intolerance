@@ -1,4 +1,4 @@
-<body></body>
+<body bgcolor="#FE7"></body>
 <div class="overlay">
   Sorry, I'm lactose intolerant.
 </div>
@@ -65,17 +65,34 @@
 
   var image = document.createElement( 'img' );
   image.src = "WFromage.png";
-  console.log(image);
+  var plopImage = document.createElement( 'img' );
+  plopImage.src = "36.png";
 
   var throwCard = function ( x, y ) {
     id > 0 ? id -- : id = 51;
     var particle = new Particle( id, x, y, Math.floor( Math.random() * 6 - 3 ) * 2, - Math.random() * 16 );
     particles.push( particle );
   }
+  /*
   for(var i = 0; i < 100; i++) {
+  }
+  */
+
+  setInterval(plopCheese, 100);
+  setInterval(plopCheeseStrip, 100);
+  
+  function plopCheese() {
+    var x = getRandRange(0, canvas.width);
+    var y = getRandRange(0, canvas.height);
+    console.log("drawing image");
+    context.drawImage( plopImage, x, y, cwidth, cheight   );
+  }
+
+  function plopCheeseStrip() {
     var x = getRandRange(0, canvas.width);
     var y = getRandRange(0, canvas.height);
     throwCard(x, y);
+
   }
 
 
