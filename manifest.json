@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+
+    "name": "Lactose Intolerance",
+    "description": "This extension prevents you from getting cheesed.",
+    "version": "1.0",
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "https://ajax.googleapis.com/"
+    ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "content_scripts": [
+    {
+        "matches": ["https://mail.google.com/*"],
+        "js": [
+            "jquery.min.js",
+            "intolerance.js"
+        ]
+    }
+    ]
+}

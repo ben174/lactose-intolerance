@@ -1,0 +1,93 @@
+<body></body>
+<div class="overlay">
+  Sorry, I'm lactose intolerant.
+</div>
+<style>
+  .overlay {
+    font-family: arial;
+    font-size: 200px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    z-index: 10000;
+    font-weight: bold;
+  }
+</style>
+<script>
+  var id = 0;
+  var canvas = document.createElement( 'canvas' );
+  canvas.style.position = 'absolute';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  document.body.appendChild( canvas );
+
+  var context = canvas.getContext( '2d' );
+
+  var cwidth = 300, cwidthhalf = cwidth / 2;
+  var cheight = 158, cheighthalf = cheight / 2;
+
+  var particles = [];
+
+  var Particle = function ( id, x, y, sx, sy ) {
+
+    if ( sx === 0 ) sx = 2;
+
+    var cx = ( id % 4 ) * cwidth;
+    var cy = Math.floor( id / 4 ) * cheight;
+
+    this.update = function () {
+
+      x += sx;
+      y += sy;
+
+      if ( x < ( - cwidthhalf ) || x > ( canvas.width + cwidthhalf ) ) {
+
+        var index = particles.indexOf( this );
+        particles.splice( index, 1 );
+
+        return false;
+
+      }
+
+      if ( y > canvas.height - cheighthalf ) {
+
+        y = canvas.height - cheighthalf;
+        sy = - sy * 0.85;
+
+      }
+      sy += 0.98;
+      context.drawImage( image, Math.floor( x - cwidthhalf ), Math.floor( y - cheighthalf ), cwidth, cheight   );
+      return true;
+
+    }
+
+  }
+
+  var image = document.createElement( 'img' );
+  image.src = "WFromage.png";
+  console.log(image);
+
+  var throwCard = function ( x, y ) {
+    id > 0 ? id -- : id = 51;
+    var particle = new Particle( id, x, y, Math.floor( Math.random() * 6 - 3 ) * 2, - Math.random() * 16 );
+    particles.push( particle );
+  }
+  for(var i = 0; i < 100; i++) {
+    var x = getRandRange(0, canvas.width);
+    var y = getRandRange(0, canvas.height);
+    throwCard(x, y);
+  }
+
+
+  setInterval( function () {
+    var i = 0, l = particles.length;
+    while ( i < l ) {
+      particles[ i ].update() ? i ++ : l --;
+    }
+  }, 1000 / 60 );
+
+  function getRandRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
+</script>
