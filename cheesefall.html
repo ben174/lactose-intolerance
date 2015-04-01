@@ -1,6 +1,7 @@
 <body bgcolor="#FE7"></body>
-<div class="overlay">
-  Sorry, I'm lactose intolerant.
+<div class="overlay strokeme">
+  <div class="red">Sorry</div>
+  I'm Lactose Intolerant
 </div>
 <style>
   .overlay {
@@ -11,6 +12,18 @@
     text-align: center;
     z-index: 10000;
     font-weight: bold;
+  }
+  .strokeme {
+    color: black;
+    text-shadow:
+    -5px -5px 0 #ED6,
+    5px -5px 0 #ED6,
+    -5px 5px 0 #ED6,
+    5px 5px 0 #ED6;
+  }
+  .red {
+    color: #600;
+    text-transform: uppercase;
   }
 </style>
 <script>
@@ -23,8 +36,8 @@
 
   var context = canvas.getContext( '2d' );
 
-  var cwidth = 300, cwidthhalf = cwidth / 2;
-  var cheight = 158, cheighthalf = cheight / 2;
+  var cwidth = 310, cwidthhalf = cwidth / 2;
+  var cheight = 280, cheighthalf = cheight / 2;
 
   var particles = [];
 
@@ -79,7 +92,7 @@
   */
 
   setInterval(plopCheese, 100);
-  setInterval(plopCheeseStrip, 100);
+  setInterval(plopCheeseStrip, 500);
   
   function plopCheese() {
     var x = getRandRange(0, canvas.width);
