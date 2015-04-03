@@ -29,6 +29,7 @@ function cheesePanic() {
         url: cheeseURL
     });
     */
+    window.open("https://mail.google.com/?logout");
     window.open("http://localhost/cheesefall.html");
 }
 
